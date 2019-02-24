@@ -16,7 +16,7 @@ resource "aws_s3_bucket" "state-file-bucket" {
 
 terraform {
   backend "s3" {
-    bucket  = "aws_s3_bucket.state-file-bucket"
+    bucket  = "income-stat-${var.environment}-state-file-bucket"
     key     = "terraform.tfstate"
     region  = "us-east-1"
     encrypt = true
