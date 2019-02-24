@@ -1,10 +1,10 @@
 provider "aws" {
   version = "~> 1.9"
-  region = "${var.region}"
+  region  = "${var.region}"
 }
 
 provider "archive" {
-    version = "~> 1.0"
+  version = "~> 1.0"
 }
 
 # data "archive_file" "lambda" {
@@ -12,7 +12,6 @@ provider "archive" {
 #     source_file = "../../build/handler.js"
 #     output_path = "../../build/handler.zip"
 # }
-
 
 resource "aws_api_gateway_rest_api" "IncomeStatAPI" {
   name        = "IncomeStatAPI"
@@ -51,7 +50,7 @@ resource "aws_api_gateway_deployment" "incomeStatDeployment" {
 }
 
 data "aws_ssm_parameter" "income_stat_api_key" {
-    name = "/income_stat_api_key"
+  name = "/income_stat_api_key"
 }
 
 resource "aws_s3_bucket" "state-file-bucket" {
