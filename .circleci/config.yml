@@ -6,7 +6,7 @@ base_image: &base_image
   hashicorp/terraform:light
 
 working_directory: &working_directory
-  ~/
+  ~/income-stat-api
 
 default_config: &default_config
   docker:
