@@ -1,2 +1,3 @@
 .vscode/
-environments/production/.terraform/
+environments/production/.terraform
+environments/production/terraform.*
