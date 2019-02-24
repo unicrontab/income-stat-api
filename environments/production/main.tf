@@ -2,23 +2,23 @@ provider "aws" {
   region = "${var.region}"
 }
 
-module "production-state" {
-  source = "../../modules/state"
+resource "aws_s3_bucket" "state-file-bucket" {
+  bucket = "income-stat-${var.environment}-state-file"
 
-  environment = "${var.environment}"
+  versioning {
+    enabled = true
+  }
+
+  tags {
+    environment = "${var.environment}"
+  }
 }
 
 terraform {
   backend "s3" {
-    bucket  = "income-stat-production-state-file"
+    bucket  = "aws_s3_bucket.state-file-bucket"
     key     = "terraform.tfstate"
     region  = "us-east-1"
     encrypt = true
   }
-}
-
-module "production-infrastructure" {
-  source = "../../modules/infrastructure"
-
-  environment = "${var.environment}"
 }
